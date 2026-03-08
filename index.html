@@ -1,367 +1,353 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>Sketchboard Pro</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="styles.css"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<title>Sketchboard Pro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════
-     TOP TOOLBAR
-═══════════════════════════════════════════════ -->
-<header class="toolbar" id="toolbar">
-  <div class="tb-left">
-    <div class="brand">
-      <svg class="brand-hex" viewBox="0 0 26 26"><path d="M13 1L24 7v12L13 25 2 19V7z" stroke="url(#g1)" stroke-width="1.6" fill="none"/><path d="M13 8.5l4.5 2.25v4.5L13 17.5l-4.5-2.25v-4.5z" fill="url(#g2)" opacity=".8"/><defs><linearGradient id="g1" x1="2" y1="2" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#a78bfa"/></linearGradient><linearGradient id="g2" x1="8" y1="8" x2="18" y2="18" gradientUnits="userSpaceOnUse"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#ec4899"/></linearGradient></defs></svg>
-      <span class="brand-name">Sketchboard</span>
-      <span class="brand-pro">Pro</span>
-    </div>
-    <div class="search-wrap" id="searchWrap">
-      <div class="search-box">
-        <svg viewBox="0 0 20 20"><circle cx="9" cy="9" r="6"/><line x1="14" y1="14" x2="18" y2="18"/></svg>
-        <input id="searchInput" type="text" placeholder="Search…" autocomplete="off" spellcheck="false"/>
-      </div>
-      <div class="search-dropdown" id="searchDropdown"></div>
-    </div>
+<!-- ▓▓ TOOLBAR ▓▓ -->
+<header id="toolbar">
+  <div class="tb-brand">
+    <svg class="tb-logo" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    <span class="tb-name">Sketch<b>Board</b></span>
   </div>
 
-  <div class="tb-center">
-    <button class="tb-btn" id="undoBtn" disabled title="Undo (Ctrl+Z)">
-      <svg viewBox="0 0 20 20"><path d="M3 8h8a5 5 0 0 1 0 10H7"/><polyline points="3 8 6 5 3 2"/></svg>
-    </button>
-    <button class="tb-btn" id="redoBtn" disabled title="Redo (Ctrl+Y)">
-      <svg viewBox="0 0 20 20"><path d="M17 8H9A5 5 0 0 0 4 18h4"/><polyline points="17 8 14 5 17 2"/></svg>
-    </button>
-    <div class="tb-sep"></div>
-    <button class="tb-btn" id="zoomOutBtn" title="Zoom Out">
-      <svg viewBox="0 0 20 20"><circle cx="9" cy="9" r="6"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="13.5" y1="13.5" x2="18" y2="18"/></svg>
-    </button>
-    <button class="zoom-pill" id="zoomPill" title="Reset 100%">
-      <span id="zoomLabel">100%</span>
-    </button>
-    <button class="tb-btn" id="zoomInBtn" title="Zoom In">
-      <svg viewBox="0 0 20 20"><circle cx="9" cy="9" r="6"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="9" y1="6" x2="9" y2="12"/><line x1="13.5" y1="13.5" x2="18" y2="18"/></svg>
-    </button>
-    <div class="tb-sep"></div>
-    <button class="tb-btn" id="fitBtn" title="Fit Screen (F)">
-      <svg viewBox="0 0 20 20"><path d="M6 3H3v3m14-3h3v3M3 14v3h3m11 0h3v-3"/></svg>
-    </button>
-    <button class="tb-btn" id="resetBtn" title="Reset View (R)">
-      <svg viewBox="0 0 20 20"><path d="M3 10a7 7 0 1 0 7-7 7.7 7.7 0 0 0-5 2L3 7"/><path d="M3 3v4h4"/></svg>
-    </button>
+  <div class="tb-search">
+    <svg viewBox="0 0 20 20"><circle cx="8.5" cy="8.5" r="5.5"/><line x1="13" y1="13" x2="18" y2="18"/></svg>
+    <input id="searchIn" type="text" placeholder="Search…" autocomplete="off"/>
+    <div id="searchDrop" class="search-drop"></div>
   </div>
 
-  <div class="tb-right">
-    <button class="tb-btn" id="importBtn" title="Import">
-      <svg viewBox="0 0 20 20"><path d="M17 13v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3"/><polyline points="14 7 10 3 6 7"/><line x1="10" y1="3" x2="10" y2="13"/></svg>
-    </button>
-    <button class="tb-btn" id="exportBtn" title="Export">
-      <svg viewBox="0 0 20 20"><path d="M17 13v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3"/><polyline points="6 8 10 12 14 8"/><line x1="10" y1="12" x2="10" y2="2"/></svg>
-    </button>
-    <div class="tb-sep"></div>
-    <button class="tb-btn theme-toggle" id="themeBtn" title="Theme">
-      <svg class="icon-sun" viewBox="0 0 20 20"><circle cx="10" cy="10" r="4"/><line x1="10" y1="1" x2="10" y2="3"/><line x1="10" y1="17" x2="10" y2="19"/><line x1="3.5" y1="3.5" x2="5" y2="5"/><line x1="15" y1="15" x2="16.5" y2="16.5"/><line x1="1" y1="10" x2="3" y2="10"/><line x1="17" y1="10" x2="19" y2="10"/><line x1="3.5" y1="16.5" x2="5" y2="15"/><line x1="15" y1="5" x2="16.5" y2="3.5"/></svg>
-      <svg class="icon-moon" viewBox="0 0 20 20"><path d="M17.5 10.5A7.5 7.5 0 1 1 9.5 2.5a5.5 5.5 0 0 0 8 8z"/></svg>
-    </button>
+  <div class="tb-tools">
+    <div class="tb-pill">
+      <button id="btnUndo" class="tp" disabled title="Undo (Ctrl+Z)">
+        <svg viewBox="0 0 20 20"><path d="M4 9h8a5 5 0 0 1 0 10H7"/><polyline points="4 9 7 6 4 3"/></svg>
+      </button>
+      <button id="btnRedo" class="tp" disabled title="Redo (Ctrl+Y)">
+        <svg viewBox="0 0 20 20"><path d="M16 9H8a5 5 0 0 0 0 10h5"/><polyline points="16 9 13 6 16 3"/></svg>
+      </button>
+    </div>
+    <div class="tb-pill tb-zoom-pill">
+      <button id="btnZoomOut" class="tp" title="Zoom Out (-)">
+        <svg viewBox="0 0 18 18"><circle cx="8" cy="8" r="5"/><line x1="5" y1="8" x2="11" y2="8"/><line x1="12.5" y1="12.5" x2="17" y2="17"/></svg>
+      </button>
+      <button id="btnZoom" class="tp zoom-label" title="Reset zoom">100%</button>
+      <button id="btnZoomIn" class="tp" title="Zoom In (+)">
+        <svg viewBox="0 0 18 18"><circle cx="8" cy="8" r="5"/><line x1="5" y1="8" x2="11" y2="8"/><line x1="8" y1="5" x2="8" y2="11"/><line x1="12.5" y1="12.5" x2="17" y2="17"/></svg>
+      </button>
+    </div>
+    <div class="tb-pill">
+      <button id="btnFit" class="tp" title="Fit to screen (F)">
+        <svg viewBox="0 0 18 18"><path d="M1 6V2h4M17 6V2h-4M1 12v4h4M17 12v4h-4"/></svg>
+      </button>
+      <button id="btnTheme" class="tp" title="Toggle theme">
+        <svg class="sun" viewBox="0 0 18 18"><circle cx="9" cy="9" r="3.5"/><line x1="9" y1="1" x2="9" y2="3"/><line x1="9" y1="15" x2="9" y2="17"/><line x1="3.2" y1="3.2" x2="4.6" y2="4.6"/><line x1="13.4" y1="13.4" x2="14.8" y2="14.8"/><line x1="1" y1="9" x2="3" y2="9"/><line x1="15" y1="9" x2="17" y2="9"/><line x1="3.2" y1="14.8" x2="4.6" y2="13.4"/><line x1="13.4" y1="4.6" x2="14.8" y2="3.2"/></svg>
+        <svg class="moon" viewBox="0 0 18 18"><path d="M15.5 10A7 7 0 1 1 8 2.5a5.5 5.5 0 0 0 7.5 7.5z"/></svg>
+      </button>
+    </div>
+    <div class="tb-pill tb-io">
+      <button id="btnExport" class="tp" title="Export JSON">
+        <svg viewBox="0 0 18 18"><path d="M15 12v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3"/><polyline points="5 7 9 11 13 7"/><line x1="9" y1="11" x2="9" y2="2"/></svg>
+      </button>
+      <button id="btnImport" class="tp" title="Import JSON">
+        <svg viewBox="0 0 18 18"><path d="M15 12v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3"/><polyline points="13 5 9 2 5 5"/><line x1="9" y1="2" x2="9" y2="11"/></svg>
+      </button>
+    </div>
   </div>
 </header>
 
-<!-- ═══════════════════════════════════════════════
-     LEFT SIDEBAR (desktop only)
-═══════════════════════════════════════════════ -->
-<aside class="sidebar" id="sidebar">
+<!-- ▓▓ SIDEBAR ▓▓ -->
+<aside id="sidebar">
   <!-- Nav tools -->
-  <div class="sb-section">
-    <div class="sb-label">Navigate</div>
-    <div class="sb-row">
+  <section class="sb-sec">
+    <div class="sb-label">Mode</div>
+    <div class="sb-toolrow">
       <button class="sb-tool active" data-tool="select" title="Select (V)">
-        <svg viewBox="0 0 20 20"><path d="M3 3l5.5 14 2-6L16 9z"/></svg>
-        <span>Select</span>
+        <svg viewBox="0 0 18 18"><path d="M3 3l5 13 2-5 5-2z"/></svg>Select
       </button>
       <button class="sb-tool" data-tool="hand" title="Pan (H)">
-        <svg viewBox="0 0 20 20"><path d="M15 9V5a1.5 1.5 0 0 0-3 0m0 4V3a1.5 1.5 0 0 0-3 0v1M9 8V5a1.5 1.5 0 0 0-3 0v6"/><path d="M15 7a1.5 1.5 0 0 1 3 0v4a6 6 0 0 1-6 6H9c-2.2 0-3.5-.7-4.7-1.9L1.9 13.7a1.5 1.5 0 0 1 2.1-2.1L5.5 13"/></svg>
-        <span>Pan</span>
+        <svg viewBox="0 0 18 18"><path d="M13 8V5a1.5 1.5 0 0 0-3 0m0 3V3a1.5 1.5 0 0 0-3 0v1M7 7V5a1.5 1.5 0 0 0-3 0v5"/><path d="M13 6.5A1.5 1.5 0 0 1 16 7v3.5a5 5 0 0 1-5 5h-1c-1.7 0-2.8-.6-3.8-1.7L4 12"/></svg>Pan
       </button>
     </div>
-  </div>
+  </section>
 
-  <!-- Add elements -->
-  <div class="sb-section">
-    <div class="sb-label">Add Element</div>
-    <button class="sb-add sb-add-card" id="addCardBtn" title="Card (N)">
-      <svg viewBox="0 0 20 20"><rect x="2" y="2" width="16" height="16" rx="3"/><line x1="10" y1="6" x2="10" y2="14"/><line x1="6" y1="10" x2="14" y2="10"/></svg>
-      <span>Card</span>
+  <!-- Add -->
+  <section class="sb-sec">
+    <div class="sb-label">Add</div>
+    <button class="sb-add-btn card-btn" id="btnAddCard">
+      <svg viewBox="0 0 18 18"><rect x="2" y="2" width="14" height="14" rx="3"/><line x1="9" y1="6" x2="9" y2="12"/><line x1="6" y1="9" x2="12" y2="9"/></svg>
+      Card <kbd>N</kbd>
     </button>
-    <button class="sb-add sb-add-text" id="addTextBtn" title="Free Text (T)">
-      <svg viewBox="0 0 20 20"><polyline points="3 6 3 3 17 3 17 6"/><line x1="7.5" y1="17" x2="12.5" y2="17"/><line x1="10" y1="3" x2="10" y2="17"/></svg>
-      <span>Free Text</span>
+    <button class="sb-add-btn text-btn" id="btnAddText">
+      <svg viewBox="0 0 18 18"><polyline points="3 5 3 3 15 3 15 5"/><line x1="6.5" y1="15" x2="11.5" y2="15"/><line x1="9" y1="3" x2="9" y2="15"/></svg>
+      Text <kbd>T</kbd>
     </button>
-    <button class="sb-add sb-add-sticky" id="addStickyBtn" title="Sticky (S)">
-      <svg viewBox="0 0 20 20"><path d="M4 2h12a2 2 0 0 1 2 2v10l-4 4H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><polyline points="14 2 14 8 20 8" opacity=".5"/></svg>
-      <span>Sticky</span>
+    <button class="sb-add-btn sticky-btn" id="btnAddSticky">
+      <svg viewBox="0 0 18 18"><path d="M3 2h12a1 1 0 0 1 1 1v9l-4 4H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><polyline points="12 2 12 8 16 8" opacity=".5"/></svg>
+      Sticky <kbd>S</kbd>
     </button>
-  </div>
+  </section>
+
+  <!-- Multi-select -->
+  <section class="sb-sec" id="multiSec" style="display:none">
+    <div class="sb-label">Selection (<span id="selCount">0</span>)</div>
+    <button class="sb-action-btn danger" id="btnDeleteAll">
+      <svg viewBox="0 0 16 16"><polyline points="1 3 15 3"/><path d="M12 3l-.5 8a1.5 1.5 0 0 1-1.5 1.4H6a1.5 1.5 0 0 1-1.5-1.4L4 3"/></svg>
+      Delete Selected
+    </button>
+    <button class="sb-action-btn" id="btnDeselectAll">Clear Selection</button>
+  </section>
 
   <!-- Color -->
-  <div class="sb-section">
+  <section class="sb-sec">
     <div class="sb-label">Color</div>
-    <div class="sb-swatches" id="sbSwatches">
-      <button class="swatch active" data-color="#6366f1" style="background:#6366f1"></button>
-      <button class="swatch" data-color="#ec4899" style="background:#ec4899"></button>
-      <button class="swatch" data-color="#f59e0b" style="background:#f59e0b"></button>
-      <button class="swatch" data-color="#10b981" style="background:#10b981"></button>
-      <button class="swatch" data-color="#3b82f6" style="background:#3b82f6"></button>
-      <button class="swatch" data-color="#ef4444" style="background:#ef4444"></button>
-      <button class="swatch" data-color="#8b5cf6" style="background:#8b5cf6"></button>
-      <button class="swatch" data-color="#14b8a6" style="background:#14b8a6"></button>
-      <button class="swatch" data-color="#f97316" style="background:#f97316"></button>
-      <button class="swatch" data-color="#e2e8f0" style="background:#e2e8f0"></button>
+    <div class="sb-swatches" id="swatches">
+      <button class="sw active" data-c="#6366f1" style="background:#6366f1"></button>
+      <button class="sw" data-c="#ec4899" style="background:#ec4899"></button>
+      <button class="sw" data-c="#f59e0b" style="background:#f59e0b"></button>
+      <button class="sw" data-c="#10b981" style="background:#10b981"></button>
+      <button class="sw" data-c="#3b82f6" style="background:#3b82f6"></button>
+      <button class="sw" data-c="#ef4444" style="background:#ef4444"></button>
+      <button class="sw" data-c="#8b5cf6" style="background:#8b5cf6"></button>
+      <button class="sw" data-c="#14b8a6" style="background:#14b8a6"></button>
+      <button class="sw" data-c="#f97316" style="background:#f97316"></button>
+      <button class="sw" data-c="#64748b" style="background:#64748b"></button>
     </div>
-    <label class="sb-custom-color">
+    <label class="sb-custom-row">
       <span>Custom</span>
-      <input type="color" id="colorPicker" value="#6366f1"/>
+      <input type="color" id="colorPick" value="#6366f1"/>
     </label>
-  </div>
+  </section>
 
   <!-- Font -->
-  <div class="sb-section">
+  <section class="sb-sec">
     <div class="sb-label">Font</div>
-    <select class="sb-select" id="fontPicker">
-      <option value="'DM Sans',sans-serif">DM Sans</option>
-      <option value="'Syne',sans-serif">Syne</option>
+    <select id="fontPick" class="sb-select">
+      <option value="'Outfit',sans-serif">Outfit</option>
+      <option value="'JetBrains Mono',monospace">JetBrains Mono</option>
       <option value="Georgia,serif">Georgia</option>
-      <option value="'Courier New',monospace">Courier New</option>
       <option value="Impact,sans-serif">Impact</option>
     </select>
-    <button class="sb-upload-font" id="uploadFontBtn">
-      <svg viewBox="0 0 16 16"><path d="M14 10v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-3"/><polyline points="11 5 8 2 5 5"/><line x1="8" y1="2" x2="8" y2="10"/></svg>
+    <button class="sb-font-btn" id="btnUploadFont">
+      <svg viewBox="0 0 14 14"><path d="M12 10v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-2"/><polyline points="10 4 7 1 4 4"/><line x1="7" y1="1" x2="7" y2="9"/></svg>
       Upload Font
     </button>
-    <div class="sb-custom-fonts" id="sbCustomFonts"></div>
-  </div>
+    <div id="customFontList"></div>
+  </section>
 
   <!-- Size -->
-  <div class="sb-section">
-    <div class="sb-label">Font Size</div>
-    <div class="sb-sizes" id="sbSizes">
-      <button class="size-chip" data-size="11">11</button>
-      <button class="size-chip" data-size="14">14</button>
-      <button class="size-chip active" data-size="16">16</button>
-      <button class="size-chip" data-size="20">20</button>
-      <button class="size-chip" data-size="28">28</button>
-      <button class="size-chip" data-size="40">40</button>
+  <section class="sb-sec">
+    <div class="sb-label">Text Size</div>
+    <div class="sb-sizes" id="sizeBtns">
+      <button class="sz" data-sz="11">11</button>
+      <button class="sz" data-sz="14">14</button>
+      <button class="sz active" data-sz="16">16</button>
+      <button class="sz" data-sz="20">20</button>
+      <button class="sz" data-sz="28">28</button>
+      <button class="sz" data-sz="40">40</button>
     </div>
-    <input class="sb-size-input" id="customSize" type="number" value="16" min="6" max="300"/>
-  </div>
+    <input id="customSz" class="sb-sz-input" type="number" value="16" min="6" max="300"/>
+  </section>
 
-  <!-- Stats -->
-  <div class="sb-section sb-stats">
-    <span id="elemCount">0 elements</span>
-    <span id="xyCoord">0, 0</span>
-  </div>
+  <section class="sb-sec sb-stats">
+    <span id="elCount">0 elements</span>
+    <span id="xyPos">0, 0</span>
+  </section>
 </aside>
 
-<!-- ═══════════════════════════════════════════════
-     CANVAS
-═══════════════════════════════════════════════ -->
-<main class="canvas-area" id="canvasArea">
+<!-- ▓▓ CANVAS ▓▓ -->
+<main id="canvas">
   <div id="world"></div>
 
-  <!-- Floating format bar -->
-  <div class="fmt-bar" id="fmtBar">
-    <button class="fmt-btn" data-cmd="bold"><b>B</b></button>
-    <button class="fmt-btn" data-cmd="italic"><i>I</i></button>
-    <button class="fmt-btn" data-cmd="underline"><u>U</u></button>
-    <button class="fmt-btn" data-cmd="strikeThrough"><s>S</s></button>
-    <div class="fmt-sep"></div>
-    <button class="fmt-btn" data-cmd="justifyLeft"><svg viewBox="0 0 14 14"><line x1="1" y1="2" x2="13" y2="2"/><line x1="1" y1="6" x2="9" y2="6"/><line x1="1" y1="10" x2="11" y2="10"/></svg></button>
-    <button class="fmt-btn" data-cmd="justifyCenter"><svg viewBox="0 0 14 14"><line x1="1" y1="2" x2="13" y2="2"/><line x1="3" y1="6" x2="11" y2="6"/><line x1="2" y1="10" x2="12" y2="10"/></svg></button>
-    <button class="fmt-btn" data-cmd="justifyRight"><svg viewBox="0 0 14 14"><line x1="1" y1="2" x2="13" y2="2"/><line x1="5" y1="6" x2="13" y2="6"/><line x1="3" y1="10" x2="13" y2="10"/></svg></button>
-    <div class="fmt-sep"></div>
-    <select class="fmt-select" id="fmtBlock">
-      <option value="p">Para</option>
-      <option value="h1">H1</option>
-      <option value="h2">H2</option>
-      <option value="h3">H3</option>
-    </select>
-    <div class="fmt-sep"></div>
-    <label class="fmt-color-btn" title="Text color">
-      <input type="color" id="fmtColor" value="#ffffff"/>
-      <span id="fmtColorDot" class="color-dot" style="background:#6366f1">A</span>
-    </label>
-    <label class="fmt-color-btn" title="Highlight">
-      <input type="color" id="fmtHighlight" value="#fbbf24"/>
-      <span id="fmtHighlightDot" class="color-dot hl-dot" style="background:#fbbf2460">H</span>
-    </label>
-    <div class="fmt-sep"></div>
-    <button class="fmt-btn" id="fmtClear" title="Clear format">
-      <svg viewBox="0 0 14 14"><path d="M12 12H5L2 9l7-7 5 5z"/><line x1="1" y1="1" x2="13" y2="13"/></svg>
-    </button>
-  </div>
-
-  <!-- Right-click context menu -->
-  <div class="ctx-menu" id="ctxMenu">
-    <button class="ctx-item" data-action="duplicate">
-      <svg viewBox="0 0 16 16"><rect x="6" y="6" width="9" height="9" rx="1.5"/><path d="M4 10H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v1"/></svg>Duplicate
-    </button>
-    <button class="ctx-item" data-action="bringFront">
-      <svg viewBox="0 0 16 16"><rect x="5" y="5" width="9" height="9" rx="1"/><rect x="2" y="2" width="7" height="7" rx="1" opacity=".4"/></svg>Bring to Front
-    </button>
-    <button class="ctx-item" data-action="sendBack">
-      <svg viewBox="0 0 16 16"><rect x="2" y="2" width="9" height="9" rx="1"/><rect x="5" y="5" width="7" height="7" rx="1" opacity=".4"/></svg>Send to Back
-    </button>
-    <div class="ctx-sep"></div>
-    <button class="ctx-item ctx-danger" data-action="delete">
-      <svg viewBox="0 0 16 16"><polyline points="2 4 3 4 14 4"/><path d="M13 4l-.7 9.3A2 2 0 0 1 10.3 15H5.7A2 2 0 0 1 3.7 13.3L3 4"/><path d="M6 7v4M10 7v4"/><path d="M6 4V2.7A.7.7 0 0 1 6.7 2h2.6a.7.7 0 0 1 .7.7V4"/></svg>Delete
-    </button>
-  </div>
+  <!-- Selection box (drag-select) -->
+  <div id="selBox"></div>
 </main>
 
-<!-- ═══════════════════════════════════════════════
-     MINI MAP
-═══════════════════════════════════════════════ -->
-<div class="minimap" id="minimap">
-  <div class="mm-header">
-    <span>Overview</span>
-    <button id="mmToggle">−</button>
-  </div>
-  <div class="mm-body" id="mmBody">
-    <div class="mm-canvas" id="mmCanvas">
-      <div class="mm-vp" id="mmVP"></div>
-    </div>
-  </div>
+<!-- ▓▓ FORMAT BAR ▓▓ -->
+<div id="fmtBar">
+  <button class="fb" data-cmd="bold" title="Bold">B</button>
+  <button class="fb italic" data-cmd="italic" title="Italic">I</button>
+  <button class="fb under" data-cmd="underline" title="Underline">U</button>
+  <button class="fb strike" data-cmd="strikeThrough" title="Strikethrough">S</button>
+  <div class="fb-sep"></div>
+  <button class="fb" data-cmd="justifyLeft" title="Align left">
+    <svg viewBox="0 0 14 12"><line x1="0" y1="1" x2="14" y2="1"/><line x1="0" y1="5" x2="9" y2="5"/><line x1="0" y1="9" x2="11" y2="9"/></svg>
+  </button>
+  <button class="fb" data-cmd="justifyCenter" title="Center">
+    <svg viewBox="0 0 14 12"><line x1="0" y1="1" x2="14" y2="1"/><line x1="2.5" y1="5" x2="11.5" y2="5"/><line x1="1.5" y1="9" x2="12.5" y2="9"/></svg>
+  </button>
+  <button class="fb" data-cmd="justifyRight" title="Align right">
+    <svg viewBox="0 0 14 12"><line x1="0" y1="1" x2="14" y2="1"/><line x1="5" y1="5" x2="14" y2="5"/><line x1="3" y1="9" x2="14" y2="9"/></svg>
+  </button>
+  <div class="fb-sep"></div>
+  <label class="fb-color" title="Text color">
+    <input type="color" id="fmtTxtColor" value="#ffffff"/>
+    <span id="fmtTxtDot" style="background:#6366f1">A</span>
+  </label>
+  <div class="fb-sep"></div>
+  <button class="fb" id="fmtClearBtn" title="Clear formatting">
+    <svg viewBox="0 0 14 14"><path d="M11 11H6L3 8l7-7 5 5-4 4z"/><line x1="1" y1="13" x2="13" y2="13"/></svg>
+  </button>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     MOBILE BOTTOM BAR
-═══════════════════════════════════════════════ -->
-<nav class="mob-bar" id="mobBar">
-  <button class="mob-btn" id="mobAddBtn">
-    <svg viewBox="0 0 22 22"><rect x="2" y="2" width="18" height="18" rx="4"/><line x1="11" y1="7" x2="11" y2="15"/><line x1="7" y1="11" x2="15" y2="11"/></svg>
-    <span>Add</span>
+<!-- ▓▓ CONTEXT MENU ▓▓ -->
+<div id="ctxMenu">
+  <button class="ctx" data-a="duplicate">
+    <svg viewBox="0 0 14 14"><rect x="5" y="5" width="8" height="8" rx="1.5"/><path d="M3 9H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v1"/></svg>
+    Duplicate
   </button>
-  <button class="mob-btn" id="mobStyleBtn">
-    <svg viewBox="0 0 22 22"><circle cx="11" cy="11" r="3"/><path d="M11 2v2M11 18v2M2 11h2M18 11h2M4.9 4.9l1.4 1.4M15.7 15.7l1.4 1.4M4.9 17.1l1.4-1.4M15.7 6.3l1.4-1.4"/></svg>
-    <span>Style</span>
+  <button class="ctx" data-a="front">
+    <svg viewBox="0 0 14 14"><rect x="4" y="4" width="9" height="9" rx="1"/><rect x="1" y="1" width="7" height="7" rx="1" opacity=".35"/></svg>
+    Bring Front
   </button>
-  <button class="mob-btn" id="mobPanBtn">
-    <svg viewBox="0 0 22 22"><path d="M15 9V5a1.5 1.5 0 0 0-3 0m0 4V3a1.5 1.5 0 0 0-3 0v1M9 8V5a1.5 1.5 0 0 0-3 0v6"/><path d="M15 7a1.5 1.5 0 0 1 3 0v4a6 6 0 0 1-6 6H9c-2 0-3.3-.6-4.4-1.8L2.8 13.4a1.5 1.5 0 0 1 2.1-2.1L6 12.5"/></svg>
-    <span>Pan</span>
+  <button class="ctx" data-a="back">
+    <svg viewBox="0 0 14 14"><rect x="1" y="1" width="9" height="9" rx="1"/><rect x="4" y="4" width="7" height="7" rx="1" opacity=".35"/></svg>
+    Send Back
   </button>
-  <button class="mob-btn" id="mobUndoBtn">
-    <svg viewBox="0 0 22 22"><path d="M3 9h9a5 5 0 0 1 0 10H8"/><polyline points="3 9 6 6 3 3"/></svg>
-    <span>Undo</span>
+  <div class="ctx-sep"></div>
+  <button class="ctx danger" data-a="delete">
+    <svg viewBox="0 0 14 14"><polyline points="1 3 13 3"/><path d="M11 3l-.4 8a1 1 0 0 1-1 1H4.4a1 1 0 0 1-1-1L3 3M5 6v3M9 6v3M5.5 3V1.7a.7.7 0 0 1 .7-.7h2.6a.7.7 0 0 1 .7.7V3"/></svg>
+    Delete
   </button>
-  <button class="mob-btn" id="mobFitBtn">
-    <svg viewBox="0 0 22 22"><path d="M7 3H4a1 1 0 0 0-1 1v3m18-3v-1a1 1 0 0 0-1-1h-3m0 18h3a1 1 0 0 0 1-1v-3M3 15v3a1 1 0 0 0 1 1h3"/></svg>
-    <span>Fit</span>
+</div>
+
+<!-- ▓▓ MINIMAP ▓▓ -->
+<div id="minimap">
+  <div id="mmHead"><span>Map</span><button id="mmToggle">−</button></div>
+  <div id="mmBody"><div id="mmInner"><div id="mmVP"></div></div></div>
+</div>
+
+<!-- ▓▓ MOBILE NAV ▓▓ -->
+<nav id="mobNav">
+  <button class="mn" id="mnAdd">
+    <svg viewBox="0 0 22 22"><rect x="3" y="3" width="16" height="16" rx="4"/><line x1="11" y1="7" x2="11" y2="15"/><line x1="7" y1="11" x2="15" y2="11"/></svg>
+    Add
+  </button>
+  <button class="mn" id="mnStyle">
+    <svg viewBox="0 0 22 22"><circle cx="11" cy="11" r="3"/><path d="M11 2v3M11 17v3M2 11h3M17 11h3M4.9 4.9l2.1 2.1M14.9 14.9l2.1 2.1M4.9 17.1l2.1-2.1M14.9 7.1l2.1-2.1"/></svg>
+    Style
+  </button>
+  <button class="mn" id="mnPan">
+    <svg viewBox="0 0 22 22"><path d="M15 9V5.5a1.5 1.5 0 0 0-3 0m0 3.5V3.5a1.5 1.5 0 0 0-3 0V5m0 4V5.5a1.5 1.5 0 0 0-3 0v7"/><path d="M15 7.5A1.5 1.5 0 0 1 18 8v5a6 6 0 0 1-6 6H9c-2 0-3.3-.7-4.5-1.9L3 15.7a1.5 1.5 0 0 1 2.1-2.1L6 14.5"/></svg>
+    Pan
+  </button>
+  <button class="mn" id="mnUndo">
+    <svg viewBox="0 0 22 22"><path d="M4 10h9a5 5 0 0 1 0 10H8"/><polyline points="4 10 7 7 4 4"/></svg>
+    Undo
+  </button>
+  <button class="mn" id="mnFit">
+    <svg viewBox="0 0 22 22"><path d="M7 3H4a1 1 0 0 0-1 1v3m18-4h-3a1 1 0 0 0-1 1v3M3 15v3a1 1 0 0 0 1 1h3m11 0h3a1 1 0 0 0 1-1v-3"/></svg>
+    Fit
   </button>
 </nav>
 
-<!-- ═══════════════════════════════════════════════
-     MOBILE SHEET — Add
-═══════════════════════════════════════════════ -->
-<div class="sheet-overlay" id="sheetOverlay"></div>
+<!-- ▓▓ MOBILE SHEETS ▓▓ -->
+<div id="sheetBg"></div>
 
-<div class="sheet" id="addSheet">
-  <div class="sheet-handle"></div>
-  <div class="sheet-title">Add Element</div>
-  <div class="sheet-grid">
-    <button class="sheet-add-btn sheet-card" id="sheetAddCard">
+<div id="addSheet" class="sheet">
+  <div class="sh-bar"></div>
+  <div class="sh-title">Add Element</div>
+  <div class="sh-grid3">
+    <button class="sh-big card-btn" id="shAddCard">
       <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-      <span>Card</span>
+      Card
     </button>
-    <button class="sheet-add-btn sheet-text" id="sheetAddText">
-      <svg viewBox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
-      <span>Free Text</span>
+    <button class="sh-big text-btn" id="shAddText">
+      <svg viewBox="0 0 24 24"><polyline points="4 6 4 3 20 3 20 6"/><line x1="9" y1="21" x2="15" y2="21"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
+      Free Text
     </button>
-    <button class="sheet-add-btn sheet-sticky" id="sheetAddSticky">
-      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16l4-2 4 2 4-2 4 2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-      <span>Sticky</span>
+    <button class="sh-big sticky-btn" id="shAddSticky">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16l4-2 4 2 4-2 4 2V8l-6-6z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Sticky
     </button>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     MOBILE SHEET — Style
-═══════════════════════════════════════════════ -->
-<div class="sheet" id="styleSheet">
-  <div class="sheet-handle"></div>
-  <div class="sheet-title">Style &amp; Options</div>
-
-  <div class="sheet-section-label">Colors</div>
-  <div class="sheet-swatches" id="sheetSwatches">
-    <button class="swatch active" data-color="#6366f1" style="background:#6366f1"></button>
-    <button class="swatch" data-color="#ec4899" style="background:#ec4899"></button>
-    <button class="swatch" data-color="#f59e0b" style="background:#f59e0b"></button>
-    <button class="swatch" data-color="#10b981" style="background:#10b981"></button>
-    <button class="swatch" data-color="#3b82f6" style="background:#3b82f6"></button>
-    <button class="swatch" data-color="#ef4444" style="background:#ef4444"></button>
-    <button class="swatch" data-color="#8b5cf6" style="background:#8b5cf6"></button>
-    <button class="swatch" data-color="#f97316" style="background:#f97316"></button>
-    <button class="swatch" data-color="#14b8a6" style="background:#14b8a6"></button>
-    <button class="swatch" data-color="#e2e8f0" style="background:#e2e8f0"></button>
+<div id="styleSheet" class="sheet">
+  <div class="sh-bar"></div>
+  <div class="sh-title">Style &amp; Settings</div>
+  <div class="sh-row-label">Color</div>
+  <div class="sh-swatches" id="mobSwatches">
+    <button class="sw active" data-c="#6366f1" style="background:#6366f1"></button>
+    <button class="sw" data-c="#ec4899" style="background:#ec4899"></button>
+    <button class="sw" data-c="#f59e0b" style="background:#f59e0b"></button>
+    <button class="sw" data-c="#10b981" style="background:#10b981"></button>
+    <button class="sw" data-c="#3b82f6" style="background:#3b82f6"></button>
+    <button class="sw" data-c="#ef4444" style="background:#ef4444"></button>
+    <button class="sw" data-c="#8b5cf6" style="background:#8b5cf6"></button>
+    <button class="sw" data-c="#f97316" style="background:#f97316"></button>
+    <button class="sw" data-c="#14b8a6" style="background:#14b8a6"></button>
+    <button class="sw" data-c="#64748b" style="background:#64748b"></button>
   </div>
-
-  <div class="sheet-section-label">Font Size</div>
-  <div class="sheet-sizes" id="sheetSizes">
-    <button class="size-chip" data-size="11">11</button>
-    <button class="size-chip" data-size="14">14</button>
-    <button class="size-chip active" data-size="16">16</button>
-    <button class="size-chip" data-size="20">20</button>
-    <button class="size-chip" data-size="28">28</button>
-    <button class="size-chip" data-size="40">40</button>
+  <div class="sh-row-label">Font Size</div>
+  <div class="sh-sizes" id="mobSizes">
+    <button class="sz" data-sz="11">11</button>
+    <button class="sz" data-sz="14">14</button>
+    <button class="sz active" data-sz="16">16</button>
+    <button class="sz" data-sz="20">20</button>
+    <button class="sz" data-sz="28">28</button>
+    <button class="sz" data-sz="40">40</button>
   </div>
-
-  <div class="sheet-section-label">Actions</div>
-  <div class="sheet-actions-row">
-    <button class="sheet-action" id="sheetExport">
-      <svg viewBox="0 0 20 20"><path d="M17 13v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3"/><polyline points="6 8 10 12 14 8"/><line x1="10" y1="12" x2="10" y2="2"/></svg>Export
-    </button>
-    <button class="sheet-action" id="sheetImport">
-      <svg viewBox="0 0 20 20"><path d="M17 13v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3"/><polyline points="14 7 10 3 6 7"/><line x1="10" y1="3" x2="10" y2="13"/></svg>Import
-    </button>
-    <button class="sheet-action" id="sheetTheme">
+  <div class="sh-row-label">Quick Actions</div>
+  <div class="sh-actions">
+    <button class="sh-act" id="shTheme">
       <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="4"/><line x1="10" y1="1" x2="10" y2="3"/><line x1="10" y1="17" x2="10" y2="19"/><line x1="1" y1="10" x2="3" y2="10"/><line x1="17" y1="10" x2="19" y2="10"/></svg>Theme
     </button>
-    <button class="sheet-action" id="sheetFonts">
-      <svg viewBox="0 0 20 20"><path d="M14 10v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3"/><polyline points="13 6 10 3 7 6"/><line x1="10" y1="3" x2="10" y2="12"/></svg>Fonts
+    <button class="sh-act" id="shExport">
+      <svg viewBox="0 0 20 20"><path d="M16 13v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3"/><polyline points="5 8 10 13 15 8"/><line x1="10" y1="13" x2="10" y2="2"/></svg>Export
+    </button>
+    <button class="sh-act" id="shImport">
+      <svg viewBox="0 0 20 20"><path d="M16 13v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3"/><polyline points="15 5 10 2 5 5"/><line x1="10" y1="2" x2="10" y2="13"/></svg>Import
+    </button>
+    <button class="sh-act" id="shFonts">
+      <svg viewBox="0 0 20 20"><path d="M4 15l3-9 3 9M5.5 12h5M16 6v9M13.5 8.5a2.5 2.5 0 0 1 5 0V9"/></svg>Fonts
     </button>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     FONT UPLOAD MODAL
-═══════════════════════════════════════════════ -->
-<div class="modal-bg" id="fontModalBg">
-  <div class="font-modal">
-    <div class="font-modal-head">
-      <span>Upload Fonts</span>
-      <button id="fontModalClose"><svg viewBox="0 0 16 16"><line x1="12" y1="4" x2="4" y2="12"/><line x1="4" y1="4" x2="12" y2="12"/></svg></button>
-    </div>
-    <div class="font-drop" id="fontDrop">
-      <svg viewBox="0 0 40 40"><path d="M20 5v22M10 17l10-12 10 12" stroke-width="2.5"/><rect x="4" y="31" width="32" height="5" rx="2.5"/></svg>
-      <p>Drag &amp; drop font files</p>
-      <span>.ttf · .otf · .woff · .woff2</span>
-      <button id="fontBrowse">Choose Files</button>
-    </div>
-    <div class="font-list" id="fontList"></div>
+<!-- Multi-select sheet (mobile) -->
+<div id="multiSheet" class="sheet">
+  <div class="sh-bar"></div>
+  <div class="sh-title"><span id="mobSelCount">0</span> Elements Selected</div>
+  <div class="sh-actions">
+    <button class="sh-act danger" id="shDeleteSel">
+      <svg viewBox="0 0 20 20"><polyline points="2 4 18 4"/><path d="M15 4l-.7 11a2 2 0 0 1-2 1.9H7.7a2 2 0 0 1-2-1.9L5 4"/></svg>Delete All
+    </button>
+    <button class="sh-act" id="shDeselect">
+      <svg viewBox="0 0 20 20"><path d="M18 6L6 18M6 6l12 12"/></svg>Deselect
+    </button>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     TOASTS
-═══════════════════════════════════════════════ -->
-<div class="toasts" id="toasts"></div>
+<!-- Font modal -->
+<div id="fontModal">
+  <div class="fm-card">
+    <div class="fm-head">
+      <span>Upload Fonts</span>
+      <button id="fmClose">×</button>
+    </div>
+    <div class="fm-drop" id="fontDrop">
+      <svg viewBox="0 0 40 40" stroke-width="2"><path d="M20 5v22M10 17l10-12 10 12"/><rect x="4" y="31" width="32" height="5" rx="2.5"/></svg>
+      <p>Drop font files here</p>
+      <small>.ttf · .otf · .woff · .woff2</small>
+      <button id="fmBrowse">Browse Files</button>
+    </div>
+    <div id="fmList"></div>
+  </div>
+</div>
+
+<!-- Toasts -->
+<div id="toasts"></div>
 
 <!-- Hidden inputs -->
-<input type="file" id="fileInput" accept=".json" style="display:none"/>
-<input type="file" id="fontInput" accept=".ttf,.otf,.woff,.woff2" multiple style="display:none"/>
+<input id="fileIn" type="file" accept=".json" style="display:none"/>
+<input id="fontIn" type="file" accept=".ttf,.otf,.woff,.woff2" multiple style="display:none"/>
 
 <script src="script.js"></script>
 </body>
